@@ -25,5 +25,9 @@
     "files": [
       "test/*.test.js"
     ]
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "request": "^2.88.0"
   }
 }
