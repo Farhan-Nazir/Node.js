@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-const http = require("http");
-const axios = require("axios");
-const sendState = require("./responses/sendState");
+const http = require('http');
+const axios = require('axios');
+const sendState = require('./responses/sendState');
 
 /* `createServer` MUST return an instance of `http.Server` otherwise the tests
  * will fail.
@@ -17,35 +17,40 @@ function createServer(port) {
     //   response.write(JSON.stringify(sendState(state)));
     //   response.end();
     // }
+    const range = x => new Array(x).fill();
+    range(10).map(() => '/add');
+
     switch (request.url) {
-      case "/state":
-        response.writeHead("200", { "content-type": "application/json" });
+      case '/state':
+        response.writeHead('200', { 'content-type': 'application/json' });
         response.write(JSON.stringify(sendState(state)));
         response.end();
         break;
-      case "/add":
-        response.writeHead("200", { "content-type": "application/json" });
+      case '/add':
+        response.writeHead('200', { 'content-type': 'application/json' });
         response.write(JSON.stringify(sendState(state + 1)));
         response.end();
         break;
 
-      case "/subtract":
-        response.writeHead("200", { "content-type": "application/json" });
+      case '/subtract':
+        response.writeHead('200', { 'content-type': 'application/json' });
         response.write(JSON.stringify(sendState(state - 1)));
         response.end();
         break;
-      case ("/add", "/state"):
-        response.writeHead("200", { "content-type": "application/json" });
-        response.write(JSON.stringify(sendState(state + 2)));
-        response.end();
-        break;
-      case "/reset":
-        response.writeHead("200", { "content-type": "application/json" });
+      case '/reset':
+        response.writeHead('200', { 'content-type': 'application/json' });
         response.write(JSON.stringify(sendState(state)));
         response.end();
         break;
-
-      default:
+      case '/random-bad-url':
+        response.writeHead(404, { 'content-type': 'application/json' });
+        response.write(JSON.stringify({ error: 'Not found' }));
+        response.end();
+        break;
+      case range:
+        response.writeHead(404, { 'content-type': 'application/json' });
+        response.write(JSON.stringify(sendState(state + 1)));
+        response.end();
         break;
     }
   });
