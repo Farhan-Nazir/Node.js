@@ -4,7 +4,7 @@
 const yargs = require('yargs');
 
 // Import my Model
-const Tasks = require('../model/tasks');
+const Tasks = require('./model/tasks');
 
 var titleOptions = {
   describe: 'Title of the note',
