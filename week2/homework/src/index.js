@@ -7,13 +7,13 @@ const yargs = require('yargs');
 const Tasks = require('./model/tasks');
 
 var titleOptions = {
-  describe: 'Title of the note',
+  describe: 'Title of the Task',
   required: true, //
   alias: 't'
 };
 
 var bodyOptions = {
-  describe: 'Body of the note',
+  describe: 'Body of the Task',
   required: false, //
   alias: 'b'
 };
